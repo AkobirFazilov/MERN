@@ -10,6 +10,7 @@ function App() {
     const books = await request('http://localhost:5000/api/books')
     setBooks(books)
   }
+
   useEffect(() => {
     getBooks()
   }, [])
