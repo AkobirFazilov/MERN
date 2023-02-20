@@ -6,6 +6,21 @@
     align-items: center;
     font-size: 24px;
     background-color: coral;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerText {
+    width: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main {

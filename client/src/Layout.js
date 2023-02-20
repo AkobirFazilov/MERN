@@ -25,8 +25,9 @@ function Layout() {   //Layout
     return (
         <div>
             <div className='header'>
-                Header
-                <input placeholder='Search' value={inpValue} onChange={(e) => { setInpValue(e.target.value) }} />
+                <div className='logo'>Logo</div>
+                <div className='headerText'>Header</div>
+                <input className='search' placeholder='Search' value={inpValue} onChange={(e) => { setInpValue(e.target.value) }} />
             </div>
             <div className='navBar' style={{ display: "flex", flexDirection: "row", justifyContent: "center", justifyContent: "space-evenly" }}>
                 <Link to="/">Home</Link>
