@@ -5,20 +5,15 @@ import { useHttp } from '../src/hooks/http.hook';
 import { useState, useEffect } from 'react';
 
 function Layout() {   //Layout
-    const [books, setBooks] = useState(null)
     const { loading, request } = useHttp()
     const [inpValue, setInpValue] = useState("")
     const [ganres, setGanres] = useState(null)
-    const getBooks = async () => {
-        const books = await request('http://localhost:5000/api/books')
-        setBooks(books)
-    }
+
     const getGanres = async () => {
         const ganres = await request('http://localhost:5000/api/ganres')
         setGanres(ganres)
     }
     useEffect(() => {
-        getBooks()
         getGanres()
     }, [])
 
@@ -27,7 +22,10 @@ function Layout() {   //Layout
             <div className='header'>
                 <div className='logo'>Logo</div>
                 <div className='headerText'>Header</div>
-                <input className='search' placeholder='Search' value={inpValue} onChange={(e) => { setInpValue(e.target.value) }} />
+                <div>
+                    <input className='search' placeholder='Search' value={inpValue} onChange={(e) => setInpValue(e.target.value)} />
+                </div>
+
             </div>
             <div className='navBar' style={{ display: "flex", flexDirection: "row", justifyContent: "center", justifyContent: "space-evenly" }}>
                 <Link to="/">Home</Link>
@@ -49,7 +47,7 @@ function Layout() {   //Layout
                 </nav>
                 <div className='content'>
                     {
-                        <Outlet />
+                        <Outlet context={[inpValue]} />
                     }
                 </div>
             </div>
@@ -57,6 +55,9 @@ function Layout() {   //Layout
                 <h1>Footer</h1>
                 <div>
                     {
+                        // books
+                    }
+                    {/* {
                         books && books.map(el => {
                             if (el.title === inpValue) {
                                 return (
@@ -64,7 +65,7 @@ function Layout() {   //Layout
                                 )
                             }
                         })
-                    }
+                    } */}
                 </div>
             </div>
         </div >
