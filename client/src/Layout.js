@@ -16,7 +16,6 @@ function Layout() {   //Layout
     useEffect(() => {
         getGanres()
     }, [])
-
     return (
         <div>
             <div className='header'>
