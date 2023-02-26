@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useHttp } from "../hooks/http.hook"
 
-
-
 function CreateBook() {
     const { loading, request } = useHttp()
     const [ganres, setGanres] = useState(null)
+    // const [images, setImages] = useState([])
+    // const [imageURLs, setImageURLs] = useState([])
     const [form, setForm] = useState({
         title: "",
         ganre: "",
         description: "",
-        link: ""
+        link: "",
+        imageLink: ""
     });
 
     const changeHandler = event => {
@@ -28,17 +29,15 @@ function CreateBook() {
         setGanres(ganres)
         setForm({ ...form, ganre: ganres[0]._id })
     }
+
     useEffect(() => {
         getGanres()
     }, [])
 
-
-
     return (
         <div>
             <h1 style={{ textAlign: 'center' }}>Create Book</h1>
-            <form
-                style={{ display: "flex", flexDirection: "column" }}>
+            <form style={{ display: "flex", flexDirection: "column" }}>
                 <input style={{ marginBottom: '5px' }}
                     placeholder='Enter Book Title'
                     type='text'
@@ -72,13 +71,13 @@ function CreateBook() {
                     onChange={changeHandler}
                     value={form.link}
                 />
-
-                {/* <label htmlFor="dwnlImage">Download Poster for Book</label>
-                <input onChange={handleImage} id='dwnlImage' style={{ marginBottom: '5px' }} type='file' accept="image/*" name='image' /> */}
-
-                {/* <label htmlFor='dwnlFile'>Download PDF File</label>
-                <input id='dwnlFile' style={{ marginBottom: '5px' }} type='file' accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf" /> */}
-
+                <input style={{ marginBottom: '5px' }}
+                    placeholder='Enter Link Image For Book'
+                    type='url'
+                    name='imageLink'
+                    onChange={changeHandler}
+                    value={form.imageLink}
+                />
                 <button
                     type='submit'
                     onClick={createBookHandler}

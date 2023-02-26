@@ -11,8 +11,8 @@ router.post(
     async (req, res) => {
         console.log(req.body);
         try {
-            const { title, ganre, description, link } = req.body;
-            const book = new Book({ title, ganre, description, link });
+            const { title, ganre, description, link, imageLink } = req.body;
+            const book = new Book({ title, ganre, description, link, imageLink });
 
             await book.save();
 

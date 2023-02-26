@@ -4,17 +4,11 @@ const path = require('path')
 const mongoose = require('mongoose')
 // const bp = require('body-parser')
 const cors = require('cors');
-
-
-
-
 const app = express();
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
 app.use(express.json({ extended: true }))
-// app.use(bp.json())
-// app.use(bp.urlencoded({ extended: true }))
 app.use('/api', require('./routes/books.routes'))
 app.use('/api', require('./routes/ganres.routes'))
 
