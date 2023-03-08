@@ -14,12 +14,15 @@ export const useRoutes = isAuthenticated => {
     const { request } = useHttp()
 
     const getUser = async (userId) => {
+        if (!userId) {
+            return
+        }
         const user = await request(`http://localhost:5000/api/users/${userId}`)
         setUser(user)
     }
 
     useEffect(() => {
-        getUser(JSON.parse(localStorage.getItem('userData')).userId)
+        getUser(JSON.parse(localStorage.getItem('userData'))?.userId)
     }, [])
 
     if (isAuthenticated) {
