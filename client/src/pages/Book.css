@@ -1,10 +1,13 @@
 .book {
     display: flex;
     justify-content: center;
-    margin: 10px;
+    margin: 20px;
     width: fit-content;
     height: fit-content;
     padding: 10px;
+    background-color: #F2EBE3;
+    border-radius: 20px;
+    box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.75);
 }
 
 .books {
@@ -15,7 +18,7 @@
 }
 
 img {
-    height: 25%;
+    height: 250px;
     float: left;
     margin: 0px 10px 0px 0px;
 }
@@ -23,9 +26,31 @@ img {
 a {
     text-decoration: none;
     color: black;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
 }
 
 .divTitle {
     font-size: 28px;
     font-weight: 900;
+}
+
+.divDescription {
+    overflow-y: scroll;
+    height: 45%;
+}
+
+.divDescription::-webkit-scrollbar {
+    display: none;
+    overflow-y: hidden;
+}
+
+.metaData {
+    width: fit-content;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

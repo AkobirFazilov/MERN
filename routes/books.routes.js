@@ -1,13 +1,10 @@
 const { Router } = require('express');
 const router = Router();
 const Book = require('./models/Book')
-const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
 
 //TODO validation
 router.post(
     '/books',
-    upload.single('image'),
     async (req, res) => {
         console.log(req.body);
         try {

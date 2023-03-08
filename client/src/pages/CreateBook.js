@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useHttp } from "../hooks/http.hook"
 
-function CreateBook() {
+export function CreateBook() {
     const { loading, request } = useHttp()
     const [ganres, setGanres] = useState(null)
-    // const [images, setImages] = useState([])
-    // const [imageURLs, setImageURLs] = useState([])
     const [form, setForm] = useState({
         title: "",
         ganre: "",
@@ -21,6 +19,7 @@ function CreateBook() {
     const createBookHandler = async () => {
         try {
             const data = await request('http://localhost:5000/api/books', 'POST', form)
+            console.log(data);
         } catch (e) { }
     }
 
@@ -89,5 +88,3 @@ function CreateBook() {
         </div >
     )
 }
-
-export default CreateBook;

@@ -17,7 +17,7 @@ function Book() {
             {
                 books && books.map(el => {
                     return (
-                        <div style={{ border: "2px solid grey" }} className='book' key={el['_id']}>
+                        <div className='book' key={el['_id']}>
                             <a href={el.link}>
                                 <img src={el.imageLink} />
                                 <div className='divTitle'>{el.title}</div>

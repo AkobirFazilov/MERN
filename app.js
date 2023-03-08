@@ -11,6 +11,7 @@ app.use(cors({
 app.use(express.json({ extended: true }))
 app.use('/api', require('./routes/books.routes'))
 app.use('/api', require('./routes/ganres.routes'))
+app.use('/api', require('./routes/auth.routes'))
 
 if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
