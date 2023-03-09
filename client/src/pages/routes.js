@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Layout from "../Layout";
 import { AuthPage } from "./AuthPage";
 import { GanrePage } from "./GanrePage";

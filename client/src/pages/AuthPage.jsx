@@ -28,7 +28,6 @@ export const AuthPage = () => {
     const loginHandler = async () => {
         try {
             const data = await request('http://localhost:5000/api/login', 'POST', authForm)
-            console.log(data);
             auth.login(data.token, data.userId)
         } catch (e) {
             alert(e)
@@ -36,29 +35,84 @@ export const AuthPage = () => {
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: "column", alignItems: 'center' }}>
-            AuthPage
-            <div>
+        <div style={{
+            display: 'flex',
+            flexDirection: "column",
+            alignItems: 'center',
+            height: '100vh',
+            width: '100%',
+            justifyContent: 'center'
+        }}>
+            <div style={{
+                display: 'flex',
+                width: 'fit-content',
+                height: 'fit-content',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                padding: '20px',
+                backgroundColor: '#986C41',
+                borderRadius: '20px'
+            }}>
+                <label htmlFor='nikname' style={{
+                    fontWeight: "500",
+                    color: 'white'
+                }}>Nikname</label>
                 <input
+                    style={{
+                        width: '250px',
+                        height: '30px',
+                        marginBottom: '10px',
+                        borderRadius: '5px',
+                        border: "none"
+                    }}
                     type='text'
+                    id='nikname'
                     name='nikname'
                     onChange={changeHandler}
-                    placeholder='Nikname' />
-                <input
+                    placeholder='Enter your nikname' />
+                <label htmlFor='password' style={{
+                    fontWeight: "500",
+                    color: 'white'
+                }}>Password</label>
+                <input style={{
+                    width: '250px',
+                    height: '30px',
+                    borderRadius: '5px',
+                    border: "none"
+                }}
                     type='password'
+                    id='password'
                     name='password'
                     onChange={changeHandler}
-                    placeholder='Password' />
+                    placeholder='Enter your password' />
             </div>
-            <div>
+            <div style={{
+                display: "flex",
+                width: '270px',
+                height: 'fit-content',
+                justifyContent: 'space-between',
+                padding: '10px'
+            }}>
                 <button
                     onClick={loginHandler}
-                    disabled={loading}>
+                    disabled={loading}
+                    style={{
+                        width: '130px',
+                        border: "none",
+                        cursor: 'pointer',
+                        borderRadius: '5px'
+                    }}>
                     Login
                 </button>
                 <button
                     onClick={registerHandler}
-                    disabled={loading}>
+                    disabled={loading}
+                    style={{
+                        width: "130px",
+                        border: 'none',
+                        cursor: "pointer",
+                        borderRadius: '5px',
+                    }}>
                     Register
                 </button>
             </div>

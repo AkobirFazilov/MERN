@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import './Layout.css';
 import { useHttp } from '../src/hooks/http.hook';
 import { useState, useEffect } from 'react';
 import { AuthContext } from './context/AuthContext';
+import logo from './favicon.png'
 
 function Layout() {   //Layout
     const { request } = useHttp()
@@ -17,15 +18,23 @@ function Layout() {   //Layout
         setUser(user)
     }
 
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = `/`;
+        navigate(path);
+    }
+
     const logoutHandler = event => {
         event.preventDefault()
         auth.logout()
+        routeChange()
     }
 
     const getGanres = async () => {
         const ganres = await request('http://localhost:5000/api/ganres')
         setGanres(ganres)
     }
+
     useEffect(() => {
         getGanres()
         getUser(JSON.parse(localStorage.getItem('userData')).userId)
@@ -33,9 +42,12 @@ function Layout() {   //Layout
     return (
         <div>
             <div className='header'>
-                <div className='logo'>Logo</div>
-                <div className='headerText'>Header</div>
-                <div>
+                <div className='logo'><img style={{
+                    height: '13vh',
+                    margin: '0px'
+                }} src={logo} /></div>
+                <div className='headerText'>НМНАУ</div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <input className='search' placeholder='Search' value={inpValue} onChange={(e) => setInpValue(e.target.value)} />
                 </div>
 
