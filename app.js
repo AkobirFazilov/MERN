@@ -2,17 +2,20 @@ const express = require('express')
 const config = require('config')
 const path = require('path')
 const mongoose = require('mongoose')
-// const bp = require('body-parser')
 const cors = require('cors');
 const app = express();
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 app.use(express.json({ extended: true }))
 app.use('/api', require('./routes/books.routes'))
 app.use('/api', require('./routes/ganres.routes'))
 app.use('/api', require('./routes/auth.routes'))
+
+
 
 if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))

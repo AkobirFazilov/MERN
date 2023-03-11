@@ -73,7 +73,6 @@ function Layout() {   //Layout
                 </div>
                 <div className='content'>
                     {
-                        //<AuthPage />
                         <Outlet context={[inpValue]} />
                     }
                 </div>
@@ -81,18 +80,7 @@ function Layout() {   //Layout
             <div className='Footer' style={{ display: "flex", alignItems: 'center', justifyContent: 'center', width: "100%", height: "20vh", flexDirection: "column" }}>
                 <h1>Footer</h1>
                 <div>
-                    {
-                        // books
-                    }
-                    {/* {
-                        books && books.map(el => {
-                            if (el.title === inpValue) {
-                                return (
-                                    <div key={el['_id']}>{el.title}{el.ganre.name}{el.description}<hr /></div>
-                                )
-                            }
-                        })
-                    } */}
+
                 </div>
             </div>
         </div >

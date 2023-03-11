@@ -2,25 +2,52 @@ import React, { useEffect, useState } from 'react'
 import { useHttp } from "../hooks/http.hook"
 
 export function CreateBook() {
-    const { loading, request } = useHttp()
+    const { request } = useHttp()
     const [ganres, setGanres] = useState(null)
+    const [bookLoading, setBookLoading] = useState(false)
     const [form, setForm] = useState({
         title: "",
         ganre: "",
         description: "",
-        link: "",
-        imageLink: ""
+        image: null,
+        file: null
     });
 
     const changeHandler = event => {
+
+        if (event.target.type === 'file') {
+            setForm({ ...form, [event.target.name]: event.target.files[0] })
+            return
+        }
         setForm({ ...form, [event.target.name]: event.target.value })
     }
 
     const createBookHandler = async () => {
+        setBookLoading(true)
         try {
-            const data = await request('http://localhost:5000/api/books', 'POST', form)
-            console.log(data);
-        } catch (e) { }
+            const formData = new FormData();
+
+            formData.append('title', form.title);
+            formData.append('ganre', form.ganre);
+            formData.append('description', form.description);
+            formData.append('link', form.link);
+            formData.append('image', form.image);
+
+            formData.append('file', form.file);
+            console.log(Date.now());
+
+            await fetch(
+                'http://localhost:5000/api/books',
+                {
+                    method: 'POST',
+                    body: formData,
+                }
+            )
+            console.log(Date.now());
+        } catch (e) {
+            console.log(e);
+        }
+        setBookLoading(false)
     }
 
     const getGanres = async () => {
@@ -63,24 +90,24 @@ export function CreateBook() {
                     onChange={changeHandler}
                     value={form.description}
                 />
-                <input style={{ marginBottom: '5px' }}
-                    placeholder='Enter Link To Book'
-                    type='url'
-                    name='link'
+                <label htmlFor='image'>Upload Poster</label>
+                <input id='image'
+                    type='file'
+                    name='image'
+                    accept='image/*'
                     onChange={changeHandler}
-                    value={form.link}
                 />
-                <input style={{ marginBottom: '5px' }}
-                    placeholder='Enter Link Image For Book'
-                    type='url'
-                    name='imageLink'
+                <label htmlFor='file'>Upload PDF</label>
+                <input id='file'
+                    type='file'
+                    name='file'
+                    accept='application/pdf'
                     onChange={changeHandler}
-                    value={form.imageLink}
                 />
                 <button
                     type='submit'
                     onClick={createBookHandler}
-                    disabled={loading}
+                    disabled={bookLoading}
                 >
                     Create Book
                 </button>

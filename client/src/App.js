@@ -7,10 +7,12 @@ import '../src/pages/Book.css';
 function App() {
   const [filteredBooks, setFilteredBooks] = useState(null)
   const [inpValue] = useOutletContext();
-  const { loading, request } = useHttp()
+  const { request } = useHttp()
+
 
   const search = async (str) => {
     let books = await request('http://localhost:5000/api/books')
+
     if (str === "") {
       setFilteredBooks(books)
       return
@@ -29,7 +31,7 @@ function App() {
         filteredBooks && filteredBooks.map(el => {
           return (
             <div className='book' key={el['_id']}>
-              <a href={el.link}>
+              <a href={el.link} target="_blank">
                 <img alt='bookImg' src={el.imageLink} />
                 <div className='metaData'>
                   <div className='divTitle'>{el.title}</div>

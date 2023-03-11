@@ -9,7 +9,6 @@ const schema = new Schema({
     description: { type: String, required: true },
     link: { type: String, required: true },
     imageLink: { type: String, required: true }
-    // links: [{ type: Schema.Types.ObjectId, ref: "Link" }]
 })
 
 module.exports = model('Book', schema)
